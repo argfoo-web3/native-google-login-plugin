@@ -26,7 +26,6 @@ public class NativeGoogleLoginActivity extends AppCompatActivity {
 
     private static GoogleSignInClient googleSignInClient;
     public static Callback callback;
-    public static String clientId;
 
     public static void SetCallback(Callback cb)
     {
@@ -35,10 +34,15 @@ public class NativeGoogleLoginActivity extends AppCompatActivity {
 
     private AnimationDrawable loadingAnimation;
 
-    public static void Call(Activity activity)
+    public static void Call(Activity activity, String clientId, Callback callback)
     {
+        SetCallback(callback);
+
         // Creating an intent with the current activity and the activity we wish to start
         Intent myIntent = new Intent(activity, NativeGoogleLoginActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("clientId", clientId);
+        myIntent.putExtras(bundle);
         activity.startActivity(myIntent);
     }
 
@@ -57,6 +61,12 @@ public class NativeGoogleLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_native_google_login);
+
+        Bundle bundle = getIntent().getExtras();
+        String clientId = "";
+        if(bundle != null) {
+            clientId = bundle.getString("clientId");
+        }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestServerAuthCode(clientId)

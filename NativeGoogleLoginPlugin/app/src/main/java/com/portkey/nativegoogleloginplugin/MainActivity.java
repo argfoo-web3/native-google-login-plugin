@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         NativeGoogleLoginActivity.callback = new LoginCallback();
-        NativeGoogleLoginActivity.clientId = "931335042992-ousd4tdbui5n2msmqj94ppp632a27ofv.apps.googleusercontent.com";
-        NativeGoogleLoginActivity.Call(this);
+        //NativeGoogleLoginActivity.clientId = "931335042992-ousd4tdbui5n2msmqj94ppp632a27ofv.apps.googleusercontent.com";
+        NativeGoogleLoginActivity.Call(this, "931335042992-ousd4tdbui5n2msmqj94ppp632a27ofv.apps.googleusercontent.com");
     }
 }
