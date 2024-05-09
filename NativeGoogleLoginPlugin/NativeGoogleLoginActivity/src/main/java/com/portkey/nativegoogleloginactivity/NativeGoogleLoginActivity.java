@@ -109,7 +109,11 @@ public class NativeGoogleLoginActivity extends AppCompatActivity {
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.e("NativeGoogleLogin", e.getStackTrace().toString());
             this.callback.onError(e);
+        } catch (Exception exception) {
+            Log.e("NativeGoogleLogin", exception.getStackTrace().toString());
+            this.callback.onError(exception);
         }
+
         finish();
         googleSignInClient.signOut();
     }
