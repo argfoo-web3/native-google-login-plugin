@@ -84,13 +84,13 @@ public class NativeGoogleLoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == 1000) {
+        if (requestCode == 1000 && resultCode == Activity.RESULT_OK) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
-        else {
+        else if (resultCode == Activity.RESULT_CANCELED) {
             Log.e("NativeGoogleLogin", "onActivityResult cancelled.");
             this.callback.onError(new Exception("Activity cancelled!"));
             finish();
